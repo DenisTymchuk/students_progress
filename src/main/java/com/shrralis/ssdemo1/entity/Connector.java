@@ -1,7 +1,9 @@
 package com.shrralis.ssdemo1.entity;
 
 import com.shrralis.ssdemo1.entity.interfaces.Identifiable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +22,8 @@ import static com.shrralis.ssdemo1.entity.Connector.TABLE_NAME;
 @Entity
 @Table(name = TABLE_NAME)
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Connector implements Identifiable<Integer> {
 
 	public static final String TABLE_NAME = "students_groups_subjects";

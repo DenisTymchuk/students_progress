@@ -1,7 +1,9 @@
 package com.shrralis.ssdemo1.entity;
 
 import com.shrralis.ssdemo1.entity.interfaces.Identifiable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +20,8 @@ import static com.shrralis.ssdemo1.entity.Subject.TABLE_NAME;
 @Entity
 @Table(name = TABLE_NAME)
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Subject implements Identifiable<Integer> {
 
 	public static final String TABLE_NAME = "subjects";

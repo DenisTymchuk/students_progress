@@ -19,7 +19,7 @@ export default {
       surname: null,
     },
     sending: false,
-    type: [],
+
     errors: null,
     showSnackBar: false
   }),

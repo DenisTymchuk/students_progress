@@ -2,7 +2,10 @@ package com.shrralis.ssdemo1.entity;
 
 import com.shrralis.ssdemo1.entity.interfaces.Identifiable;
 import com.sun.xml.bind.v2.model.core.ID;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,6 +27,8 @@ import static com.shrralis.ssdemo1.entity.Student.TABLE_NAME;
 @Entity
 @Table(name = TABLE_NAME)
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student implements Identifiable<Integer> {
 
 	public static final String NAME_PATTERN = "^[A-ZА-ЯІЇЄ]('?[a-zа-яіїє])+?(-[A-ZА-ЯІЇЄ]('?[a-zа-яіїє])+)?$";
@@ -31,7 +36,7 @@ public class Student implements Identifiable<Integer> {
 	public static final String ID_COLUMN_NAME = "id";
 	public static final String NAME_COLUMN_NAME = "name";
 	public static final String SURNAME_COLUMN_NAME = "surname";
-	public static final String MIDDLENAME_COLUMN_NAME = "middleName";
+	public static final String MIDDLENAME_COLUMN_NAME = "middle_name";
 	public static final String GROUP_COLUMN_NAME = "group_id";
 	public static final int MAX_NAME_LENGTH = 16;
 	public static final int MIN_NAME_LENGTH = 1;

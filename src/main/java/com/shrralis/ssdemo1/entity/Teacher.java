@@ -1,7 +1,9 @@
 package com.shrralis.ssdemo1.entity;
 
 import com.shrralis.ssdemo1.entity.interfaces.Identifiable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +22,8 @@ import static com.shrralis.ssdemo1.entity.Teacher.TABLE_NAME;
 @Entity
 @Table(name = TABLE_NAME)
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Teacher implements Identifiable<Integer> {
 
 	public static final String NAME_PATTERN = "^[A-ZА-ЯІЇЄ]('?[a-zа-яіїє])+?(-[A-ZА-ЯІЇЄ]('?[a-zа-яіїє])+)?$";
@@ -27,6 +31,7 @@ public class Teacher implements Identifiable<Integer> {
 	public static final String ID_COLUMN_NAME = "id";
 	public static final String NAME_COLUMN_NAME = "name";
 	public static final String SURNAME_COLUMN_NAME = "surname";
+	public static final String MIDDLENAME_COLUMN_NAME = "middle_name";
 	public static final int MAX_NAME_LENGTH = 16;
 	public static final int MIN_NAME_LENGTH = 1;
 	public static final int MAX_SURNAME_LENGTH = 32;
@@ -53,6 +58,13 @@ public class Teacher implements Identifiable<Integer> {
 	@Column(name = SURNAME_COLUMN_NAME, nullable = false, length = MAX_SURNAME_LENGTH)
 	private String surname;
 
+	@NotNull
+	@NotBlank
+	@Pattern(regexp = NAME_PATTERN)
+	@Size(min = MIN_SURNAME_LENGTH, max = MAX_SURNAME_LENGTH)
+	@Column(name = MIDDLENAME_COLUMN_NAME, nullable = false, length = MAX_SURNAME_LENGTH)
+	private String middleName;
+
 	public Integer getId() {
 		return id;
 	}
@@ -75,5 +87,13 @@ public class Teacher implements Identifiable<Integer> {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
 	}
 }
