@@ -1,0 +1,44 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ The following code have been created by Yaroslav Zhyravov (shrralis).
+  ~ The code can be used in non-commercial way for everyone.
+  ~ But for any commercial way it needs a author's agreement.
+  ~ Please contact the author for that:
+  ~  - https://t.me/Shrralis
+  ~  - https://twitter.com/Shrralis
+  ~  - shrralis@gmail.com
+  ~
+  ~ Copyright (c) 2017 by shrralis (Yaroslav Zhyravov).
+  -->
+
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="./0.1/1-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.1/2-data.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.2/1-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.2/2-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.3/1-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.4/1-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.5/1-structure.sql" relativeToChangelogFile="true"/>
+
+	<include file="./0.5/2-structure.sql" relativeToChangelogFile="true"/>
+
+	<include file="./0.6/1-structure.sql" relativeToChangelogFile="true"/>
+
+	<include file="./0.7/1-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.8/1-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.9/1-structure.sql" relativeToChangelogFile="true"/>
+
+    <include file="./0.9/1-data.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>
