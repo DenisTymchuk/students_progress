@@ -1,5 +1,6 @@
 package com.shrralis.ssdemo1.entity;
 
+import com.shrralis.ssdemo1.entity.interfaces.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -24,11 +25,10 @@ import static com.shrralis.ssdemo1.entity.Module.TABLE_NAME;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Module {
+public class Module implements Identifiable<Integer> {
 
 	public static final String TABLE_NAME = "modules";
 	public static final String ID_COLUMN_NAME = "id";
-	public static final String SUBJECT_COLUMN_NAME = "subject_id";
 	public static final String CONNECTOR_COLUMN_NAME = "connector_id";
 	public static final String MAX_SCORE_COLUMN_NAME = "max_scores";
 
@@ -41,16 +41,36 @@ public class Module {
 
 	@NotNull
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = SUBJECT_COLUMN_NAME, nullable = false)
-	private Subject subject;
-
-	@NotNull
-	@NotBlank
-	@Column(name = CONNECTOR_COLUMN_NAME, nullable = false)
+	@JoinColumn(name = CONNECTOR_COLUMN_NAME, nullable = false)
 	private Connector connector;
 
 	@NotNull
 	@NotBlank
 	@Column(name = MAX_SCORE_COLUMN_NAME, nullable = false)
 	private Integer maxScores;
+
+	@Override
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Connector getConnector() {
+		return connector;
+	}
+
+	public void setConnector(Connector connector) {
+		this.connector = connector;
+	}
+
+	public Integer getMaxScores() {
+		return maxScores;
+	}
+
+	public void setMaxScores(Integer maxScores) {
+		this.maxScores = maxScores;
+	}
 }

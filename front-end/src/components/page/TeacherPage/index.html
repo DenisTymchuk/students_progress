@@ -1,0 +1,54 @@
+<div class="index">
+  <md-app md-waterfall>
+
+    <md-app-toolbar class="md-primary md-medium">
+      <header-page></header-page>
+    </md-app-toolbar>
+
+    <md-app-content>
+      <br>
+      <div class="md-layout md-gutter">
+        <div class="md-layout-item md-size-5"></div>
+        <div class="md-layout-item md-size-90">
+          <span class="md-headline">Всі групи:</span>
+
+          <br>
+          <br>
+          <br>
+          <div id="v-for-object" class="demo">
+            <div v-for="group in groups">
+              <br>
+              <span class="md-title">{{ group.number }}</span><br><br>
+
+              <span class="md-title">Список предметів: (натисніть, щоб змінити) </span>
+
+              <md-table>
+                <md-table-row>
+                  <md-table-head>Предмет</md-table-head>
+                  <md-table-head>Викладач</md-table-head>
+                  <md-table-head>Кількість модулів</md-table-head>
+                  <md-table-head>Кількість балів за модулі</md-table-head>
+                  <md-table-head>Кількість балів за екзамен</md-table-head>
+                </md-table-row>
+
+                <md-table-row v-for="subjectInfo in subjectsInfo" v-if=" group.id === subjectInfo.group.id" :key="subjectInfo.id" @click="">
+                  <md-table-cell> {{subjectInfo.subject.name}}</md-table-cell>
+                  <md-table-cell> {{subjectInfo.teacher.surname}} {{subjectInfo.teacher.name}} {{subjectInfo.teacher.middleName}}</md-table-cell>
+                  <md-table-cell> {{subjectInfo.countModules}} </md-table-cell>
+                  <md-table-cell> {{subjectInfo.maxScore}} </md-table-cell>
+                  <md-table-cell> {{subjectInfo.examScore}} </md-table-cell>
+                </md-table-row>
+              </md-table>
+              <br>
+
+
+              <br>
+            </div>
+          </div>
+          <div class="md-layout-item md-size-5"></div>
+        </div>
+      </div>
+    </md-app-content>
+  </md-app>
+
+</div>

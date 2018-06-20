@@ -26,7 +26,7 @@ import static com.shrralis.ssdemo1.entity.Connector.TABLE_NAME;
 @NoArgsConstructor
 public class Connector implements Identifiable<Integer> {
 
-	public static final String TABLE_NAME = "students_groups_subjects";
+	public static final String TABLE_NAME = "teachers_groups_subjects";
 	public static final String ID_COLUMN_NAME = "id";
 	public static final String TEACHER_COLUMN_NAME = "teacher_id";
 	public static final String SUBJECT_COLUMN_NAME = "subject_id";

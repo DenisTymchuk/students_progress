@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 public class SecretaryRestController {
+
 	private final SecretaryService secretaryService;
 
 	@Autowired

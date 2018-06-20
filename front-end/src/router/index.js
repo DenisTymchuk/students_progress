@@ -1,16 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import SecretaryPage from '@/components/page/SecretaryPage/SecretaryPage'
+import TeacherPage from '@/components/page/TeacherPage/TeacherPage'
 import AuthPage from '@/components/page/AuthPage/AuthPage'
 
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/secretary',
       name: 'SecretaryPage',
       component: SecretaryPage
+    },
+    {
+      path: '/teacher',
+      name: 'TeacherPage',
+      component: TeacherPage
     },
     {
       path: '/auth**',

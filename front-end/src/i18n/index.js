@@ -19,7 +19,7 @@ export function getCurrentLang() {
 }
 
 const i18n = new VueI18n({
-  locale: getCurrentLang() || 'en',
+  locale: getCurrentLang() || 'uk',
   messages
 })
 
