@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import IndexPage from '@/components/page/IndexPage/IndexPage'
+import SecretaryPage from '@/components/page/SecretaryPage/SecretaryPage'
 import AuthPage from '@/components/page/AuthPage/AuthPage'
 
 Vue.use(Router)
@@ -9,8 +9,8 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'IndexPage',
-      component: IndexPage
+      name: 'SecretaryPage',
+      component: SecretaryPage
     },
     {
       path: '/auth**',

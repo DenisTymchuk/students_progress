@@ -1,6 +1,7 @@
 package com.shrralis.ssdemo1.controller;
 
 import com.shrralis.ssdemo1.dto.StudentDTO;
+import com.shrralis.ssdemo1.dto.SubjectDTO;
 import com.shrralis.ssdemo1.service.SecretaryService;
 import com.shrralis.tools.model.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,19 @@ public class SecretaryRestController {
 		return new JsonResponse(secretaryService.getAllTeachers());
 	}
 
-	@PostMapping("teachers")
-	public JsonResponse saveTeacher() {
+	@PostMapping("/subjects")
+	public JsonResponse saveTeacher(@RequestBody @Valid SubjectDTO subjectDTO) {
+		return new JsonResponse(secretaryService.saveSubject(subjectDTO));
+	}
 
+	@GetMapping("/subjects")
+	public JsonResponse getAllSubjects() {
+		return new JsonResponse(secretaryService.getAllSubjects());
+	}
+
+	@GetMapping("/subjectsInfo")
+	public JsonResponse getAllSubjectsInfo() {
+		return new JsonResponse(secretaryService.getAllSubjectsInfo());
 	}
 
 }

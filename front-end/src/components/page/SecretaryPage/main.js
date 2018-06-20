@@ -17,15 +17,15 @@ export default {
     groups: [],
     students: [],
     teachers: [],
+    subjectsInfo: [],
     teacherId: 0,
     form: {
       name: null,
       surname: null,
-      middleName: null,
+      middleName: null
+    },
+    form2: {
       subjectName: null,
-      teacherName: null,
-      teacherSurname: null,
-      teacherMiddleName: null
     },
     sending: false,
     errors: null,
@@ -51,27 +51,11 @@ export default {
         minLength: minLength(MIN_SURNAME_LENGTH),
         maxLength: maxLength(MAX_SURNAME_LENGTH),
         NameValidator
-      },
+      }
+    },
+    form2: {
       subjectName: {
         required
-      },
-      teacherMiddleName: {
-        required,
-        minLength: minLength(MIN_SURNAME_LENGTH),
-        maxLength: maxLength(MAX_SURNAME_LENGTH),
-        NameValidator
-      },
-      teacherSurname: {
-        required,
-        minLength: minLength(MIN_SURNAME_LENGTH),
-        maxLength: maxLength(MAX_SURNAME_LENGTH),
-        NameValidator
-      },
-      teacherName: {
-        required,
-        minLength: minLength(MIN_SURNAME_LENGTH),
-        maxLength: maxLength(MAX_SURNAME_LENGTH),
-        NameValidator
       }
     }
   },
@@ -85,11 +69,21 @@ export default {
         };
       }
     },
+
+    getValidationClass2(fieldName) {
+      const field = this.$v.form2[fieldName];
+
+      if (field) {
+        return {
+          'md-invalid': field.$invalid && field.$dirty
+        };
+      }
+    },
+
     addStudent() {
       this.errors = [];
       this.sending = true;
 
-      console.log(this.form.middleName, this.form.surname, this.form.name, this.groupId);
       this.$http.post('students',
         {
           name: this.form.name,
@@ -132,20 +126,61 @@ export default {
       )
     },
     addSubject() {
+      this.errors = [];
+      this.sending = true;
 
+      this.$http.post('subjects',
+        {
+          subjectName: this.form2.subjectName,
+          groupId: this.groupId,
+          teacherId: this.teacherId
+        }).then(
+        response => {
+          let json = response.body;
 
+          if (!json.errors) {
+            this.showSubjectDialog = false;
+            this.showSubjectSnackBar = true;
+
+          } else if (json.errors.length) {
+            this.errors = this.errors.concat(json.errors.map((error) => getErrorMessage(error)));
+          } else {
+            this.errors.push(getErrorMessage(UNEXPECTED));
+          }
+
+          this.sending = false;
+        }, error => {
+          switch (error.status) {
+            case 400:
+            case 500:
+              let json = error.body;
+
+              if (json.errors) {
+                this.errors = this.errors.concat(json.errors.map((error) => getErrorMessage(error)));
+              }
+              break;
+          }
+
+          if (!this.errors.length) {
+            this.errors.push('HTTP error (' + error.status + ': ' + error.statusText + ')');
+          }
+
+          this.sending = false;
+        }
+      )
     },
     validateStudent() {
-      this.$v.$touch();
+      this.$v.form.$touch();
 
-      if (!this.$v.$invalid) {
+      if (!this.$v.form.$invalid) {
         this.addStudent();
       }
     },
-    validateSubject() {
-      this.$v.$touch();
 
-      if (!this.$v.$invalid) {
+    validateSubject() {
+      this.$v.form2.$touch();
+
+      if (!this.$v.form2.$invalid) {
         this.addSubject();
       }
     }
@@ -184,5 +219,15 @@ export default {
         console.log(JSON.stringify(error.body));
       });
 
+    this.$http.get('subjectsInfo')
+      .then(response => {
+        let json = response.body;
+
+        if (!json.errors) {
+          this.subjectsInfo = json.data
+        }
+      }, error => {
+        console.log(JSON.stringify(error.body));
+      });
   }
 }

@@ -14,9 +14,6 @@ import AuthPage from '@/components/page/AuthPage/AuthPage'
 import Header from '@/components/header/Header'
 import router from './router'
 import i18n from './i18n'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-social/bootstrap-social.css'
-import 'bootstrap-social/assets/css/font-awesome.css'
 
 Vue.use(VueResource)
 Vue.use(VueCookie)
